@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.invoice.Mapper.UserMapper">
+    <resultMap id="userMapper" type="com.invoice.Entity.User">
+        <id property="id" column="ID"/>
+        <result property="username" column="USERNAME"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="age" column="AGE"/>
+        <result property="email" column="EMAIL"/>
+        <result property="role" column="ROLE"/>
+    </resultMap>
+
+    <sql id="selectWhere">
+
+    </sql>
+
+
+    <insert id="insertUser" parameterType="userMapper" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO SYS_USER(
+        USERNAME,
+        PASSWORD,
+        AGE,
+        EMAIL,
+        ROLE) VALUES(
+        #{username},
+        #{password},
+        #{age},
+        #{email},
+        #{role}
+)
+    </insert>
+
+    <update id="update">
+        UPDATE SYS_USER
+        <where>
+            <if test="username !=null|| username !=''">
+                USERNAME=#{username},
+            </if>
+            <if test="password !=null|| password !=''">
+                PASSWORD=#{password},
+            </if>
+            <if test="age !=null|| age !=''">
+                AGE=#{age},
+            </if>
+            <if test="email !=null|| email !=''">
+                EMAIL=#{email},
+            </if>
+        </where>
+    </update>
+
+    <delete id="delete">
+        DELETE FROM SYS_USER WHERE ID=#{id}
+    </delete>
+
+    <select id="selectUserByUsername" parameterType="java.lang.String">
+        SELECT ID,PASSWORD,AGE,EMAIL from SYS_USER where USERNAME=#{username}
+    </select>
+
+    <select id="selectUser">
+        SELECT * FROM SYS_USER WHERE 1=1
+        <include refid="selectWhere"/>
+    </select>
+
+    <select id="selectAllUser">
+        SELECT * FROM SYS_USER
+    </select>
+
+    <select id="selectUserById">
+        SELECT * FROM USER where ID =#{id}
+    </select>
+</mapper>
