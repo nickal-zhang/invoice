@@ -7,3 +7,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+mybatis:
+  mapper-locations: classpath:Mapper/**/*Mapper.xml
+#  type-aliases-package: com.invoice.Entity

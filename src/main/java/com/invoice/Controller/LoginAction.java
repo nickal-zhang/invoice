@@ -21,7 +21,7 @@ public class LoginAction {
         String username = user.getUsername();
         User queryUser = userLoginService.queryUser(username);
         if (queryUser == null) {
-            modelMap.addAttribute("result", true);
+            modelMap.addAttribute("result", false);
             modelMap.addAttribute("errMsg", "当前用户不存在");
             return modelMap;
         }

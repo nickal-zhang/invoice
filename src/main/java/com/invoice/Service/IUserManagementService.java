@@ -1,10 +1,9 @@
 package com.invoice.Service;
 
 import com.invoice.Entity.User;
-import com.invoice.Mapper.UserMapper;
+import org.mybatis.spring.annotation.MapperScan;
 
 import java.util.List;
-
 public interface IUserManagementService {
 
           int addUser(User user);

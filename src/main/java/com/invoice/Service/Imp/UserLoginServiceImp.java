@@ -5,7 +5,6 @@ import com.invoice.Mapper.UserMapper;
 import com.invoice.Service.IUserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 @Service
 public class UserLoginServiceImp implements IUserLoginService {
 
@@ -13,14 +12,17 @@ public class UserLoginServiceImp implements IUserLoginService {
     private UserMapper userMapper;
 
     @Override
-    public User queryUser(@RequestBody String username) {
+    public User queryUser(String username) {
         User user = userMapper.selectUserByUsername(username);
         return user;
     }
     @Override
-    public boolean verifyPassword(@RequestBody User user) {
+    public boolean verifyPassword(User user) {
         User queryUser = queryUser(user.getUsername());
         if (user.getPassword().equals(queryUser.getPassword())) {
+            user.setAge(queryUser.getAge());
+            user.setId(queryUser.getId());
+            user.setEmail(queryUser.getEmail());
             return true;
         }
         return false;

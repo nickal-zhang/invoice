@@ -1,23 +1,26 @@
 package com.invoice.Mapper;
 
 import com.invoice.Entity.User;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
+@Mapper
 public interface UserMapper {
-    User selectUserByUsername(@RequestBody String username);
+    User selectUserByUsername(@Param("username") String username);
 
-    int insertUser(@RequestBody User user);
+    int insertUser(User user);
 
     List<User> selectAllUser();
 
-    User selectUser(@RequestBody User user);
+    User selectUser(User user);
 
-    User update(@RequestBody User user);
+    User update(User user);
 
-    int delete(@RequestBody int id);
+    int delete(int id);
 
-    User selectUserById(@RequestBody int id);
+    User selectUserById(int id);
 
 }

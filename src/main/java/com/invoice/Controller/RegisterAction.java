@@ -2,7 +2,6 @@ package com.invoice.Controller;
 
 import com.invoice.Entity.User;
 import com.invoice.Service.IUserRegisterService;
-import com.invoice.helper.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +20,7 @@ public class RegisterAction {
         String password = user.getPassword();
         int age = user.getAge();
         String email = user.getEmail();
-        User newUser = new User(username, password, age, email, Role.USER);
+        User newUser = new User(username, password, age, email);
         int ret = userRegisterService.registerUser(newUser);
         ModelMap modelMap = new ModelMap();
         if (ret > 0) {
