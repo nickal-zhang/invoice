@@ -12,9 +12,9 @@ public class Goods {
     //安全存量
     private String safeStock;
     //销售价格
-    private Double salePrice;
+    private String salePrice;
     //采购价格
-    private Double purchasePrice;
+    private String purchasePrice;
     //商品的最近一次进货日期
     private Date lastPurchaseDate;
     //商品的最近一次销售日期
@@ -44,19 +44,19 @@ public class Goods {
         this.safeStock = safeStock;
     }
 
-    public Double getSalePrice() {
+    public String getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(Double salePrice) {
+    public void setSalePrice(String salePrice) {
         this.salePrice = salePrice;
     }
 
-    public Double getPurchasePrice() {
+    public String getPurchasePrice() {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(Double purchasePrice) {
+    public void setPurchasePrice(String purchasePrice) {
         this.purchasePrice = purchasePrice;
     }
 

@@ -19,7 +19,7 @@ public interface OperatorMapper {
 
     int update(Operator Operator);
 
-    int delete(int id);
+    int delete(Integer id);
 
     Operator selectById(Integer id);
 

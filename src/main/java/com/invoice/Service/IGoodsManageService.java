@@ -7,15 +7,19 @@ import java.util.List;
 
 public interface IGoodsManageService {
 
-    int addGoods(Goods goods) throws CommonException;
+    void addGoods(Goods goods) throws CommonException;
 
-    int deleteGoods(int id) throws CommonException;
+    void deleteGoods(Integer id) throws CommonException;
 
-    Goods updateGoods(Goods goods) throws CommonException;
+    void updateGoods(Goods goods) throws CommonException;
 
-    Goods getGoodsById(int id);
+    Goods getGoodsById(Integer id);
+
+    Goods getGoodsByName(String goodsName);
 
     Goods getGoods(Goods goods);
 
     List<Goods> getAllGoods();
+
+
 }

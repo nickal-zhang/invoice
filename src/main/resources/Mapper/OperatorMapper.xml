@@ -16,14 +16,14 @@
     <insert id="insert" parameterType="com.invoice.Entity.Operator" keyProperty="id" useGeneratedKeys="true" keyColumn="ID" >
 		<![CDATA[
 			INSERT INTO SYS_OPERATOR(
-				 OPERATOR_NO,
-        LOGIN_NAME,
-        PASSWORD,
-        REAL_NAME,
-        TEL,
-        EMAIL,
-        ADDRESS,
-        ROLE
+                OPERATOR_NO,
+                LOGIN_NAME,
+                PASSWORD,
+                REAL_NAME,
+                TEL,
+                EMAIL,
+                ADDRESS,
+                ROLE
 			) VALUES(
 				#{operatorNo,jdbcType=VARCHAR},
 				#{loginName,jdbcType=VARCHAR},
