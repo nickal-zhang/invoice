@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 物品管理
+ * 商品信息管理
  */
 
 @RestController
@@ -21,7 +21,7 @@ public class GoodsAction {
     private IGoodsManageService goodsManageService;
 
     /**
-     * 添加物品
+     * 添加商品
      *
      * @param goods
      */
@@ -39,7 +39,7 @@ public class GoodsAction {
     }
 
     /**
-     * 批量刪除物品
+     * 批量刪除商品
      *
      * @param goodsIds
      */
@@ -59,7 +59,7 @@ public class GoodsAction {
     }
 
     /**
-     * 刪除物品
+     * 刪除商品
      *
      * @param goodsId
      */
@@ -77,7 +77,7 @@ public class GoodsAction {
     }
 
     /**
-     * 更新物品
+     * 更新商品
      *
      * @param goods
      */
@@ -95,7 +95,7 @@ public class GoodsAction {
     }
 
     /**
-     * 取得物品列表
+     * 取得商品列表
      */
     @RequestMapping("/getAllGoods")
     public ModelMap list() {
@@ -107,7 +107,7 @@ public class GoodsAction {
     }
 
     /**
-     * 取得物品
+     * 取得商品
      */
     @RequestMapping("/getGoods")
     public ModelMap getGoods(@RequestParam Integer id) {
