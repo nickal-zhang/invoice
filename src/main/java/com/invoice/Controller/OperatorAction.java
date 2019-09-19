@@ -115,6 +115,7 @@ public class OperatorAction {
         if (operator == null) {
             modelMap.addAttribute("result", false);
             modelMap.addAttribute("errMsg", "获取操作员信息失败");
+            return modelMap;
         }
         modelMap.addAttribute("result", true);
         modelMap.addAttribute("operator", operator);

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.invoice.Mapper.GoodsMapper">
+    <resultMap id="goodsMap" type="com.invoice.Entity.Goods">
+        <id column="GOODS_ID" property="goodsId"/>
+        <result column="GOODS_NO" property="goodsNo"/>
+        <result column="GOODS_NAME" property="goodsName"/>
+        <result column="SAFE_STOCK" property="safeStock"/>
+        <result column="SALE_PRICE" property="salePrice"/>
+        <result column="PURCHASE_PRICE" property="purchasePrice"/>
+        <result column="LAST_PURCHASE_DATE" property="lastPurchaseDate"/>
+        <result column="LAST_SALE_DATE" property="lastSaleDate"/>
+    </resultMap>
+
+    <sql id="selectWhere">
+        <if test="GOODS_NO !=null|| GOODS_NO !=''">
+            AND GOODS_NO = #{GOODS_NO}
+        </if>
+        <if test="goodsName !=null|| goodsName !=''">
+            AND GOODS_NAME LIKE #{goodsName}
+        </if>
+    </sql>
+
+    <insert id="insert" parameterType="com.invoice.Entity.Goods" keyProperty="goodsId" useGeneratedKeys="true" keyColumn="GOODS_ID" >
+		<![CDATA[
+			INSERT INTO SYS_GOODS(
+                GOODS_NO,
+                GOODS_NAME,
+                SAFE_STOCK,
+                PURCHASE_PRICE,
+                SALE_PRICE,
+                LAST_PURCHASE_DATE,
+                LAST_SALE_DATE
+			) VALUES(
+				#{goodsNo,jdbcType=VARCHAR},
+				#{goodsName,jdbcType=VARCHAR},
+				#{safeStock,jdbcType=VARCHAR},
+				#{purchasePrice,jdbcType=VARCHAR},
+				#{salePrice,jdbcType=VARCHAR},
+				#{lastPurchaseDate,jdbcType=DATE},
+				#{lastSaleDate,jdbcType=DATE}
+			)
+		]]>
+	</insert>
+
+    <update id="update">
+        UPDATE SYS_GOODS
+        <set>
+            <if test="goodsName !=null|| goodsName !=''">
+                GOODS_NAME=#{goodsName},
+            </if>
+            <if test="safeStock !=null|| safeStock !=''">
+                SAFE_STOCK=#{safeStock},
+            </if>
+            <if test="purchasePrice !=null || purchasePrice !=''">
+                PURCHASE_PRICE=#{purchasePrice},
+            </if>
+            <if test="salePrice !=null|| salePrice !=''">
+                SALE_PRICE=#{salePrice},
+            </if>
+            <if test="lastPurchaseDate !=null|| lastPurchaseDate !=''">
+                LAST_PURCHASE_DATE=#{lastPurchaseDate,jdbcType=DATE},
+            </if>
+            <if test="lastSaleDate !=null|| lastSaleDate !=''">
+                LAST_SALE_DATE=#{lastSaleDate,jdbcType=DATE}
+            </if>
+        </set>
+        WHERE GOODS_ID=#{goodsId}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE FROM SYS_GOODS WHERE GOODS_ID=#{goodsId}
+    </delete>
+
+    <select id="selectGoodsById" resultMap="goodsMap">
+        select * from SYS_GOODS where GOODS_ID =#{goodsId}
+    </select>
+
+    <select id="selectGoods" resultMap="goodsMap">
+        SELECT * FROM SYS_GOODS WHERE 1=1
+        <include refid="selectWhere"/>
+    </select>
+
+    <select id="selectAllGoods" resultMap="goodsMap">
+        SELECT * FROM SYS_GOODS
+    </select>
+
+</mapper>

@@ -4,7 +4,7 @@ import java.util.Date;
 
 // 商品信息
 public class Goods {
-    private Integer id;
+    private Integer goodsId;
     //商品编号
     private String goodsNo;
     //商品名
@@ -19,6 +19,10 @@ public class Goods {
     private Date lastPurchaseDate;
     //商品的最近一次销售日期
     private Date lastSaleDate;
+
+    public Integer getGoodsId() {
+        return goodsId;
+    }
 
     public String getGoodsNo() {
         return goodsNo;
