@@ -1,10 +1,8 @@
 package com.invoice.Controller;
 
 
-import com.invoice.Entity.User;
-import com.invoice.Helper.ExceptionType.UserException;
-import com.invoice.Helper.UserConstants;
-import com.invoice.Service.IUserLoginService;
+import com.invoice.Entity.Operator;
+import com.invoice.Service.IOperatorLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,29 +11,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/index")
+@RequestMapping(path = "/invoice")
 public class LoginAction {
     @Autowired
-    private IUserLoginService userLoginService;
+    private IOperatorLoginService operatorLoginService;
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/login")
-    public ModelMap login(@RequestBody User user) {
+    public ModelMap login(@RequestBody Operator operator) {
         ModelMap modelMap = new ModelMap();
-        String username = user.getUsername();
+        String loginName = operator.getLoginName();
         try {
-            User  queryUser = userLoginService.queryUser(username);
-            boolean verifyResult = userLoginService.verifyPassword(user);
+            Operator  queryOperator = operatorLoginService.queryOperator(loginName);
+            boolean verifyResult = operatorLoginService.verifyPassword(operator);
             if (verifyResult) {
                 modelMap.addAttribute("result", true);
-                modelMap.addAttribute("user", user);
+                modelMap.addAttribute("operator", queryOperator);
             } else {
                 modelMap.addAttribute("result", false);
-                modelMap.addAttribute("errMsg", UserConstants.USER_PWD_MISMATCH);
+                modelMap.addAttribute("errMsg", "密码错误，请重新输入");
             }
-        } catch (UserException e) {
+        } catch (Exception e) {
             modelMap.addAttribute("result", false);
-            modelMap.addAttribute("errMsg", UserConstants.USER_NOT_EXISTS);
+            modelMap.addAttribute("errMsg", "用户不存在");
             return modelMap;
         }
         return modelMap;
