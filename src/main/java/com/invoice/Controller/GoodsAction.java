@@ -110,9 +110,10 @@ public class GoodsAction {
      * 取得商品
      */
     @RequestMapping("/getGoods")
-    public ModelMap getGoods(@RequestParam Integer id) {
+    public ModelMap getGoods(@RequestBody Goods goodse) {
         ModelMap modelMap = new ModelMap();
-        Goods goods = goodsManageService.getGoodsById(id);
+        Integer goodsId = goodse.getGoodsId();
+        Goods goods = goodsManageService.getGoodsById(goodsId);
         if (goods == null) {
             modelMap.addAttribute("result", false);
             modelMap.addAttribute("errMsg", "获取操作员信息失败");

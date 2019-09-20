@@ -40,8 +40,8 @@ public class GoodsManageServiceImp implements IGoodsManageService {
     }
 
     @Override
-    public Goods getGoodsById(Integer id) {
-        return goodsMapper.selectGoodsById(id);
+    public Goods getGoodsById(Integer goodsId) {
+        return goodsMapper.selectGoodsById(goodsId);
     }
 
     @Override
