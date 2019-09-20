@@ -116,7 +116,7 @@ public class GoodsAction {
         Goods goods = goodsManageService.getGoodsById(goodsId);
         if (goods == null) {
             modelMap.addAttribute("result", false);
-            modelMap.addAttribute("errMsg", "获取操作员信息失败");
+            modelMap.addAttribute("errMsg", "获取商品信息失败");
             return modelMap;
         }
         modelMap.addAttribute("result", true);
